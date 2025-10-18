@@ -96,6 +96,20 @@ async function run() {
       res.send(users);
     });
 
+    // updation user information
+    app.patch("/users", async (req, res) => {
+      const userInfo = req.body;
+      const filter = { email: userInfo.email };
+      const updateDoc = {
+        $set: {
+          lastSignInTime: userInfo.lastSignInTime,
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+      console.log(result);
+    });
+
     // get specific user with details
     app.get("/users/:id", async (req, res) => {
       const id = req.params.id;
