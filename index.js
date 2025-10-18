@@ -95,11 +95,21 @@ async function run() {
       // const users3 = await usersCollection.find({}).toArray();
       res.send(users);
     });
+
+    // get specific user with details
     app.get("/users/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const user = await usersCollection.findOne(filter);
       res.send(user);
+    });
+
+    // delete specific user in database
+    app.delete("/users/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await usersCollection.deleteOne(query);
+      res.send(result);
     });
   } finally {
   }
