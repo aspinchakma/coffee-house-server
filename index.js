@@ -54,7 +54,6 @@ async function run() {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await coffeesCollection.deleteOne(query);
-      console.log(id, result);
       res.send(result);
     });
 
@@ -84,7 +83,6 @@ async function run() {
       const userDetails = req.body;
       const result = await usersCollection.insertOne(userDetails);
       res.send(result);
-      console.log(result);
     });
 
     // get all users data from database
@@ -107,7 +105,6 @@ async function run() {
       };
       const result = await usersCollection.updateOne(filter, updateDoc);
       res.send(result);
-      console.log(result);
     });
 
     // get specific user with details
