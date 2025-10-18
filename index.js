@@ -86,6 +86,21 @@ async function run() {
       res.send(result);
       console.log(result);
     });
+
+    // get all users data from database
+    app.get("/users", async (req, res) => {
+      const cursor = usersCollection.find({});
+      const users = await cursor.toArray();
+      // const users2 = await usersCollection.find({}).toArray();
+      // const users3 = await usersCollection.find({}).toArray();
+      res.send(users);
+    });
+    app.get("/users/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const user = await usersCollection.findOne(filter);
+      res.send(user);
+    });
   } finally {
   }
 }
