@@ -65,7 +65,7 @@ async function run() {
       const updatedDocument = {
         $set: {
           name: updatedCoffee.name,
-          supllier: updatedCoffee.supllier,
+          supplier: updatedCoffee.supplier,
           price: updatedCoffee.price,
           quantity: updatedCoffee.quantity,
           taste: updatedCoffee.taste,
