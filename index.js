@@ -7,7 +7,17 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 // app.use(cors());
-app.use(cors({ origin: "*" }));
+// app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://coffee-house-7deb7.web.app",
+      "https://coffee-house-7deb7.firebaseapp.com",
+    ],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  })
+);
 app.use(express.json());
 
 // Connecting to the database
